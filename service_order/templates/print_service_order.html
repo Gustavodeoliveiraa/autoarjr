@@ -1,0 +1,163 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="{% static "service_order_static/print_service_order.css" %}">
+</head>
+<body class="d-flex align-items-center justify-content-center">
+    <button class="btn btn-primary print-button" onclick="window.print()">Imprimir</button>
+
+
+    <div class="all-container mt-2 ">
+        <div class="d-flex align-items-end justify-content-center title-border w-100 b-0">
+            <p class="me-3 title fs-1 m-0">Auto Ar Jr</p>
+            <p class="fs-3 m-0 mb-1 fw-bolder fs-3">Ar condicionado Automotivo</p>
+
+        </div>
+
+        <div class="row ms-1 me-1 mt-2 ">
+            <div class="col-9">
+                <p class="fw-light m-0 fs-5">CARGA DE GÁS - MANUTENÇÃO - INSTALAÇÃO</p>
+                <p class="fs-5 fw-bolder">Av Barão de Alagoas, 298 - Itaim Paulista - São Paulo - SP, 08120-000</p>
+            </div>
+
+            <div class="col-3 p-0 d-flex align-items-center justify-content-end">
+                <p class="font1 fs-2 text-end m-0">94727-2232</p>
+            </div>
+        </div>
+
+        <div class="container-head w-100 pt-1 ps-3 mt-2">
+            <div class="data d-flex mt-2 mb-3">
+                <p class="fs-5 data-title me-1">
+                    São Paulo 
+                    <p class="text-day b-0 text-center fs-5">{{service_order.created_at.day}}</p>
+                    <p class="fs-5 ms-2 me-2">de</p> <p class="text-month ms-1 text-center fs-5"> {{service_order.created_at.month}} </p>
+                    <p class="fs-5 ms-2 me-2">de</p> <p class="text-year ms-1 text-center fs-5">{{service_order.created_at.year}}</p>
+
+
+                <div class="service-order text-center w-25 ms-4 me-4">
+                    <p class="fw-bolder">ORDEM DE <br> SERVIÇO</p>
+                </div>
+                <div class="service_id text-center d-flex align-items-center ms-4">
+                    <p class="text-danger fs-5">{{service_order.pk|stringformat:"04d"}}</p>
+                </div>
+            </div>
+
+            <div class="name_and_tell d-flex mt-2">
+                <div class="me-4 d-flex">
+                    <p class="fs-5">Nome:</p>
+                    <div class="text_name ps-3 ">
+                        {{service_order.client_name }}
+                    </div>
+                </div>
+
+                <div class="tell d-flex">
+                    <p class="fs-5">Telefone: </p>
+                    <div class="text_tell ps-3">
+                        {{service_order.client_cellphone}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="address_and_neighborhood d-flex">
+                <div class="me-4 d-flex">
+                    <div class="tell d-flex">
+                        <p class="fs-5">Endereço: </p>
+                        <div class="text_address  ps-3">
+                            {{address}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="me-4">
+                    <div class="d-flex">
+                        <p class="fs-5">Bairro: </p>
+                        <div class="text_neighborhood ps-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cep_and_cpf d-flex">
+                <div class="me-4">
+                    <div class="tell d-flex">
+                        <p class="fs-5">CEP: </p>
+                        <div class="text_cep  ps-3"></div>
+                    </div>
+                </div>
+
+                <div class="me-4">
+                    <div class="d-flex">
+                        <p class="fs-5">CPF: </p>
+                        <div class="text_cpf ps-3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car_and_plate d-flex">
+                <div class="me-4">
+                    <div class="tell d-flex">
+                        <p class="fs-5">Carro: </p>
+                        <div class="text_car  ps-3">
+                            {{service_order.car_model}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="me-4">
+                    <div class="d-flex">
+                        <p class="fs-5">Placa: </p>
+                        <div class="text_plate ps-3 d-flex">
+                            <p>{{service_order.car_plate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row w-100 m-auto bg-dark1">
+            <div class="col-9  text-center p-0">
+                <p class="text-white font-title fs-5 ps-5 spacing-letter">Serviço Prestado</p>
+            </div>
+            <div class="col-3  text-center p-0">
+                <p class="text-white font-title fs-5 ps-4">Valor R$</p>
+            </div>
+        </div>
+
+        <div class="table-responsive m-0">
+            <table class="table align-mid table-bordered custom-border-table m-0">
+                <tbody>
+                    {% for service in filtered_service %}
+                        <tr>
+                            <td class="w-72 td-height">
+                                <p class="ms-4 fs-5">{{service}}</p>
+                            </td>
+                            <td class="w-20 td-height">
+                                <p class="text-end"></p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="row p-0 w-100 m-auto">
+                <div class="col-9 p-0 border1 td-height b-e-none">
+                    <div class="price-end d-flex justify-content-end align-items-center h-100 me-3">
+                        <p class="spacing-letter m-price-text">Valor total</p>
+                        <p class="fw-bolder">R$</p>
+                    </div>
+                </div>
+                <div class="col-3 p-0 border1 td-height text-center fs-4"> {{ service_order.service_price|floatformat:2 }}</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

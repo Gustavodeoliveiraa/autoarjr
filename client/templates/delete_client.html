@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Deletar Item{% endblock title %}
+
+{% block main %}
+    <div class="container">
+        <h3 class="display-6">Deletar Cliente</h3>
+
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    Tem certeza que deseja excluir o Item: <strong>{{object.client_name}}</strong>
+                </p>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <button type="submit" class="btn mt-3 btn-danger">Confirmar</button>
+                </form>
+                <a href=" {% url "client:list" %}" class="btn btn-secondary mt-4">
+                    Voltar para a Lista de Clientes
+                </a>
+            </div>
+        </div>
+
+    </div>
+{% endblock main %}

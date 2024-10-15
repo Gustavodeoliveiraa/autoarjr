@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastrar Categoria{% endblock title %}
+
+{% block main %}
+    <div class="containe">
+        <h3 class="display-4">Cadastrar Categoria</h3>
+
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url "storage:create_category" %}" method="post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input class="btn btn-primary" type="submit" value="Enviar">
+                </form>
+            </div>
+        </div>
+        <a class="btn btn-secondary mt-4" href="{% url "storage:list_category" %}" role="button">
+            Cancelar e voltar para a lista de Categorias
+        </a>
+    </div>
+{% endblock main %}

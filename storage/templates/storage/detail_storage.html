@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes do produto{% endblock title %}
+
+{% block main %}
+    <div class="cotainer mt-4">
+        <h3 class="display-4">Detalhes da Peça</h3>
+
+        <div class="card mt-4 mb-4">
+            <div class="card-body mb-2">
+                <h3 class="card-title mb-4">{{ product.name}}</h3>
+                <p class="card-text ms-3">Categoria: <strong>{{product.category}}</strong></p>
+                <p class="card-text ms-3">Quantidade em estoque: <strong>{{product.quantity}}</strong></p>
+                <p class="card-text ms-3">Detalhes: <strong>{{product.detail}}</strong></p>
+            </div>
+        </div>
+        <a href="{% url "storage:storage_list" %}" class="btn btn-secondary">Voltar para lista de peças</a>
+    </div>
+{% endblock main %}

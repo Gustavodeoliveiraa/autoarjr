@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Deletar Categoria{% endblock title %}
+
+{% block main %}
+    <div class="container">
+        <h3 class="display-6">Deletar Categori</h3>
+
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    Tem certeza que deseja excluir a categoria: <strong>{{object.name}}</strong>
+                </p>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <button type="submit" class="btn mt-3 btn-danger">Confirmar</button>
+                </form>
+                <a href=" {% url "storage:list_category" %}" class="btn btn-secondary mt-3">
+                    Voltar para a Lista de Categorias
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

@@ -1,0 +1,2 @@
+LANGUAGE_CODE = 'pt-br'
+USE_L10N = True

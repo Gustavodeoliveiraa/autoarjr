@@ -10,7 +10,8 @@ class FormRegisterServiceOrder(ModelForm):
         model = ServiceOrder
         fields = [
             'client_name', 'client_cellphone', 'car_model',
-            'car_plate', 'service_price', 'service', 'paid'
+            'car_plate', 'service_price', 'service', 'observation','paid',
+            'cpf'
         ]
         labels = {
             'client_name': 'Nome do Cliente',
@@ -19,7 +20,9 @@ class FormRegisterServiceOrder(ModelForm):
             'car_plate': 'Placa',
             'service_price': 'Valor do Serviço',
             'service': 'Serviço feito',
-            'paid': 'Pago'
+            'paid': 'Pago',
+            'observation': 'Observações',
+            'cpf': 'CPF'
         }
 
     def __init__(self, *args, **kwargs):
@@ -33,6 +36,7 @@ class FormRegisterServiceOrder(ModelForm):
         self.fields['paid'].help_text = 'Marque se o pagamento foi realizado.'
         self.fields['car_plate'].widget.attrs['id'] = 'id_car_plate'
         self.fields['client_cellphone'].widget.attrs['id'] = 'cellphone'
+        self.fields['cpf'].widget.attrs['id'] = 'cpf'
 
     def clean_client_cellphone(self):
         cellphone = self.cleaned_data['client_cellphone']

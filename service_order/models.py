@@ -19,5 +19,9 @@ class ServiceOrder(models.Model):
     )
     created_at = models.DateField(auto_now_add=True)
 
+    observation = models.CharField(max_length=255, null=True, blank=True)
+
+    cpf = models.CharField(max_length=15, null=True, blank=True)
+
     class Meta:
         ordering = ['-id']

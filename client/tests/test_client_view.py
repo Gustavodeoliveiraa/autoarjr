@@ -21,11 +21,11 @@ class TestClientView(TestCase):
     # create
     def test_if_create_view_of_client_is_correct(self):
 
-        data = {
-            'client_name': 'felipe',
-            'cellphone': '11392344429',
-            'car_model': 'sandero',
-            'car_plate': 'asx-1030'
+        data = {            
+            'client_name': 'Felipe',
+            'cellphone': "(11) 99999-9999",
+            'car_model': "sandero",
+            'car_plate': "AAA-9999"
         }
 
         response = self.client.post(
@@ -34,9 +34,9 @@ class TestClientView(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertInHTML('Felipe', response.content.decode())  # type:ignore
-        self.assertInHTML('11392344429', response.content.decode())  # type:ignore
+        self.assertInHTML('(11) 99999-9999', response.content.decode())  # type:ignore
         self.assertInHTML('sandero', response.content.decode())  # type:ignore
-        self.assertInHTML('asx-1030', response.content.decode())  # type:ignore
+        self.assertInHTML('AAA-9999', response.content.decode())  # type:ignore
 
     # Update
     def test_if_client_will_be_updated_with_success(self):
@@ -51,9 +51,9 @@ class TestClientView(TestCase):
             reverse('client:update', args=(1,)),
             data={            
                 'client_name': 'José',
-                'cellphone': "11932933002",
+                'cellphone': "(11) 99999-9999",
                 'car_model': "sandero",
-                'car_plate': "asx-1030"
+                'car_plate': "AAA-9999"
             }
         )
 
@@ -62,7 +62,7 @@ class TestClientView(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertIsNotNone(product)
         self.assertEqual(product.client_name, 'José')
-        self.assertEqual(product.cellphone, '11932933002')
+        self.assertEqual(product.cellphone, '(11) 99999-9999')
 
     # Delete
     def test_if_client_will_be_deleted_with_successful(self):

@@ -35,8 +35,8 @@
             </div>
         </div>
 
-        <div class="container-head w-100 pt-1 ps-3 mt-2">
-            <div class="data d-flex mt-2 mb-3">
+        <div class="container-head w-100 pt-1 ps-3 ">
+            <div class="data d-flex">
                 <p class="fs-5 data-title me-1">
                     São Paulo 
                     <p class="text-day b-0 text-center fs-5">{{service_order.created_at.day}}</p>
@@ -45,9 +45,9 @@
 
 
                 <div class="service-order text-center w-25 ms-4 me-4">
-                    <p class="fw-bolder">ORDEM DE <br> SERVIÇO</p>
+                    <p class="fw-bolder fs-service_order_text">ORDEM DE <br> SERVIÇO</p>
                 </div>
-                <div class="service_id text-center d-flex align-items-center ms-4">
+                <div class="text-center d-flex align-items-center ms-4">
                     <p class="text-danger fs-5">{{service_order.pk|stringformat:"04d"}}</p>
                 </div>
             </div>
@@ -55,12 +55,12 @@
             <div class="name_and_tell d-flex mt-2">
                 <div class="me-4 d-flex">
                     <p class="fs-5">Nome:</p>
-                    <div class="text_name ps-3 ">
+                    <div class="text_name ps-3 fs-5">
                         {{service_order.client_name }}
                     </div>
                 </div>
 
-                <div class="tell d-flex">
+                <div class="d-flex">
                     <p class="fs-5">Telefone: </p>
                     <div class="text_tell ps-3">
                         {{service_order.client_cellphone}}
@@ -70,7 +70,7 @@
 
             <div class="address_and_neighborhood d-flex">
                 <div class="me-4 d-flex">
-                    <div class="tell d-flex">
+                    <div class="d-flex">
                         <p class="fs-5">Endereço: </p>
                         <div class="text_address  ps-3">
                             {{address}}
@@ -89,7 +89,7 @@
 
             <div class="cep_and_cpf d-flex">
                 <div class="me-4">
-                    <div class="tell d-flex">
+                    <div class=" d-flex">
                         <p class="fs-5">CEP: </p>
                         <div class="text_cep  ps-3"></div>
                     </div>
@@ -105,9 +105,9 @@
 
             <div class="car_and_plate d-flex">
                 <div class="me-4">
-                    <div class="tell d-flex">
+                    <div class=" d-flex">
                         <p class="fs-5">Carro: </p>
-                        <div class="text_car  ps-3">
+                        <div class="text_car ps-3 fs-5">
                             {{service_order.car_model}}
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                 <div class="me-4">
                     <div class="d-flex">
                         <p class="fs-5">Placa: </p>
-                        <div class="text_plate ps-3 d-flex">
+                        <div class="text_plate ps-3 d-flex fs-5">
                             <p>{{service_order.car_plate}}</p>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
             <div class="col-9  text-center p-0">
                 <p class="text-white font-title fs-5 ps-5 spacing-letter">Serviço Prestado</p>
             </div>
-            <div class="col-3  text-center p-0">
+            <div class="col-3 text-center p-0">
                 <p class="text-white font-title fs-5 ps-4">Valor R$</p>
             </div>
         </div>
@@ -139,7 +139,7 @@
                     {% for service in filtered_service %}
                         <tr>
                             <td class="w-72 td-height">
-                                <p class="ms-4 fs-5">{{service}}</p>
+                                <p class="ms-4 fs-6">{{service}}</p>
                             </td>
                             <td class="w-20 td-height">
                                 <p class="text-end"></p>
@@ -150,7 +150,7 @@
             </table>
             <div class="row p-0 w-100 m-auto">
                 <div class="col-9 p-0 border1 td-height b-e-none">
-                    <div class="price-end d-flex justify-content-end align-items-center h-100 me-3">
+                    <div class="d-flex justify-content-end align-items-center h-100 me-3">
                         <p class="spacing-letter m-price-text">Valor total</p>
                         <p class="fw-bolder">R$</p>
                     </div>
@@ -158,6 +158,28 @@
                 <div class="col-3 p-0 border1 td-height text-center fs-4"> {{ service_order.service_price|floatformat:2 }}</div>
             </div>
         </div>
+        <div class="mt-1 d-flex">
+            <p class="fw-bolder spacing-letter me-2">GARANTIA: </p>
+            <p class="assurance  fw-bolder">a garantia é de <u>90</u> dias, somente das peças que foram trocadas </p>
+        </div>
+
+        <div class="mt-2 d-flex">
+            <p class="fw-bolder spacing-letter me-2">Observações: </p>
+            <p class="w-100 border-black mb-1 fw-light" > {% if service_order.observation %}{{service_order.observation}}{% endif %}</p>
+        </div>
+
+        <div class="mt-3 d-flex justify-content-around w-100 align-items-center">
+            <div class="signature-client border-black text-center"></div>
+            <div class="signature-responsible border-black text-center ">
+                <p class="signature-responsible-text fs-1">Junior</p>
+            </div>
+        </div>
+
+        <div class="mb-4 mt-1 d-flex justify-content-around w-100 align-items-center">
+            <div class="text-center fw-bolder">Assinatura do proprietário</div>
+            <div class="text-center fw-bolder">Assinatura do Resp. JR</div>
+        </div>
     </div>
+
 </body>
 </html>

@@ -5,33 +5,11 @@
     --fonte-title: 'Alfa Slab One', sans-serif;
 }
 
-.all-container {
-    width: 827px; /* Largura ajustada para A4 */
-    height: auto; /* Pode ser automático */
-    margin: 0 auto; /* Centraliza o container */
-    position: relative;
-}
-
-@media print {
-    .all-container {
-        width: 100%; /* Para impressão, usa a largura total */
-        height: auto; /* Altura automática para se ajustar ao conteúdo */
-    }
-
-    .bg-dark1 {
-        background-color: black !important; /* Garante que a cor de fundo seja aplicada na impressão */
-        -webkit-print-color-adjust: exact; /* Força a impressão de cores exatas no Chrome */
-        color-adjust: exact; /* Força a impressão de cores exatas em outros navegadores */
-    }
-
-    /* Adicione este estilo para garantir que o texto apareça corretamente em fundo preto */
-    .bg-dark1 p {
-        color: white !important; /* Garante que o texto seja branco na impressão */
-    }
-
-    .print-button {
-        display: none;
-    }
+@font-face {
+    font-family: 'FontSignature';
+    src: url('/static/service_order_static/font_signature.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 .print-button {
@@ -39,15 +17,6 @@
     top: 10px; 
     right: 10px; 
     z-index: 1000;
-}
-
-
-.font-title {
-    font-family: var(--fonte-title);
-}
-
-.spacing-letter {
-    letter-spacing: 2px;
 }
 
 p {
@@ -58,30 +27,11 @@ p {
     width: 20%;
 }
 
-
-.m-price-text {
-    margin-right: 150px !important;
-}
-
-.underline {
-    display: inline-block;
-    border-bottom: 1px solid black; /* Cor e espessura do sublinhado */
-    width: 150px; /* Ajuste o tamanho conforme necessário */
-    padding-bottom: 2px; /* Espaçamento entre o texto e a linha */
-    text-align: center; /* Centraliza o texto dentro do sublinhado */
-} 
-
-/* .all-container {
-    width: 900px;
+.all-container {
+    width: 827px; 
+    height: auto; 
+    margin: 0 auto;
     position: relative;
-} */
-
-.bg-dark1 {
-    background-color: black;
-}
-
-.font1 {
-    font-family: var(--fonte-title);
 }
 
 .title-border {
@@ -92,6 +42,11 @@ p {
 .title{
     font-family: var(--fonte-title);
     height: fit-content;
+}
+
+
+.font1 {
+    font-family: var(--fonte-title);
 }
 
 .container-head {
@@ -120,81 +75,77 @@ p {
 }
 
 .text-year {
-
     width: 70px;
     height: 25px;
     border-bottom: 1px solid black;
+}
+
+.fs-service_order_text {
+    font-size: 0.8rem;
 }
 
 .text_name,
 .text_tell {
     width: 314px;
     height: 25px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.507);
 }
 
 .text_address {
     width: 500px;
     height: 25px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.507);
 }
 
 .text_neighborhood {
     width: 100px;
     height: 25px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.507);
 }
 
 .text_cep {
     width: 350px;
     height: 25px;
-    border-bottom: 1px solid black;;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.507);
 }
+
 
 .text_cpf {
     width: 350px;
     height: 25px;
-    border-bottom: 1px solid black;
 }
 
 .text_car {
     width: 500px;
     height: 25px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.507);
 }
 
 .text_plate {
     width: 175px;
     height: 25px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.507);
 }
 
-.name_and_tell,
-.address_and_neighborhood,
-.cep_and_cpf,
-.car_and_plate {
-    height: 48px;
+.bg-dark1 {
+    background-color: black;
 }
 
-.td-height {
-    height: 40px;
+.font-title {
+    font-family: var(--fonte-title);
 }
 
-.border1 {
-    border: 1px solid black;
+.spacing-letter {
+    letter-spacing: 2px;
 }
 
-.b-e-none {
-    border-right: none;
-}
+
+/* table  */
 
 .custom-border-table {
     border-width: 3px !important;
     border-color: black !important;
 }
-
-
-/* table  */
 
 .table td {
     border: 1px solid black; /* Adiciona bordas a todas as células */
@@ -202,4 +153,81 @@ p {
 
 .table td:last-child {
     border-right: 1px solid black; /* Garante que a borda direita da última coluna apareça */
+}
+
+.td {
+    padding: 0;
+}
+
+.td-height {
+    height: 37px;
+}
+
+/* end table  */
+
+.border1 {
+    border: 1px solid black;
+}
+
+.m-price-text {
+    margin-right: 150px !important;
+}
+
+.b-e-none {
+    border-right: none;
+}
+
+.name_and_tell,
+.address_and_neighborhood,
+.cep_and_cpf,
+.car_and_plate {
+    height: 40px;
+}
+
+.assurance {
+    background-color: rgba(172, 255, 47, 0.774);
+}
+
+.border-black {
+    border-bottom: 1px solid black;
+}
+
+.signature-client,
+.signature-responsible {
+    width: 150px;
+    height: 30px;
+}
+
+.signature-responsible-text {
+    font-family: 'FontSignature';
+    transform: translateY(-15px);
+}
+
+
+
+@media print {
+    .all-container {
+        width: 100%; /* Para impressão, usa a largura total */
+        height: auto; /* Altura automática para se ajustar ao conteúdo */
+    }
+
+    .bg-dark1 {
+        background-color: black !important; /* Garante que a cor de fundo seja aplicada na impressão */
+        -webkit-print-color-adjust: exact; /* Força a impressão de cores exatas no Chrome */
+        color-adjust: exact; /* Força a impressão de cores exatas em outros navegadores */
+    }
+
+    /* Adicione este estilo para garantir que o texto apareça corretamente em fundo preto */
+    .bg-dark1 p {
+        color: white !important; /* Garante que o texto seja branco na impressão */
+    }
+
+    .assurance {
+        background-color: rgba(172, 255, 47, 0.774) !important;
+    }
+    
+
+    .print-button {
+        display: none;
+    }
 }

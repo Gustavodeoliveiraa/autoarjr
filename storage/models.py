@@ -15,7 +15,7 @@ class Storage(models.Model):
     detail = models.CharField(max_length=255, blank=True, default='')
 
     class Meta:
-        ordering = ['name']
+        ordering = ['-id']
 
     def __str__(self) -> str:
         return str(self.name)

@@ -21,6 +21,8 @@
 
 p {
     margin: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .w-20 {
@@ -113,6 +115,7 @@ p {
 .text_cpf {
     width: 350px;
     height: 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.507);
 }
 
 .text_car {
@@ -160,7 +163,7 @@ p {
 }
 
 .td-height {
-    height: 37px;
+    height: 36px !important;
 }
 
 /* end table  */
@@ -185,7 +188,7 @@ p {
 }
 
 .assurance {
-    background-color: rgba(172, 255, 47, 0.774);
+    background-color: rgba(172, 255, 47, 0.774) !important;
 }
 
 .border-black {
@@ -223,9 +226,15 @@ p {
     }
 
     .assurance {
-        background-color: rgba(172, 255, 47, 0.774) !important;
+        background-color: rgb(172, 255, 47) !important;
+        -webkit-print-color-adjust: exact; /* Força a impressão de cores exatas no Chrome */
+        color-adjust: exact; /
     }
     
+    .signature-responsible-text {
+        font-family: 'FontSignature';
+        transform: translateY(-15px);
+    }
 
     .print-button {
         display: none;

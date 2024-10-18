@@ -7,7 +7,7 @@
         <div class="col-md-4">
             <form action="{% url "storage:storage_list" %}" method="get">
                 <div class="input-group">
-                    <input type="text" name="name" value="{{request.GET.name}}" class="form-control" placeholder="Nome da Peça">
+                    <input type="text" name="name" value="{{request.GET.name}}" class="form-control" placeholder="Buscar pelo Nome da Peça">
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-search"></i>
                     </button>
@@ -38,6 +38,8 @@
             </a>
         </div>
     </div>
+
+    <h3 class="display-6 mt-5">Tabela de Peças</h3>
 
     <div class="table-responsive mt-4">
         <table class="table table-striped table-bordered">

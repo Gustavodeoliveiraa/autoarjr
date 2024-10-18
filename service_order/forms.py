@@ -22,7 +22,7 @@ class FormRegisterServiceOrder(ModelForm):
             'service': 'Serviço feito',
             'paid': 'Pago',
             'observation': 'Observações',
-            'cpf': 'CPF'
+            'cpf': 'CPF / CNPJ'
         }
 
     def __init__(self, *args, **kwargs):

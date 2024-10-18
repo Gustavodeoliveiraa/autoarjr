@@ -21,7 +21,7 @@ class ServiceOrder(models.Model):
 
     observation = models.CharField(max_length=255, null=True, blank=True)
 
-    cpf = models.CharField(max_length=15, null=True, blank=True)
+    cpf = models.CharField(max_length=18, null=True, blank=True)
 
     class Meta:
         ordering = ['-id']

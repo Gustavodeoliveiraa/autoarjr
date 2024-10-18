@@ -9,10 +9,15 @@ $(document).ready(function() {
 
     $('#cellphone').inputmask('(99) 99999-9999');
 
-    $('#cpf').inputmask('999.999.999-99', {
-        placeholder: '_',  
-        clearMaskOnLostFocus: true,  
-        autoUnmask: true,
+    var cpfMask = '999.999.999-99';
+    var cnpjMask = '99.999.999/9999-99';
+
+    $('#cpf').inputmask({
+        mask: [cpfMask, cnpjMask],
+        keepStatic: true,
+        placeholder: '_',
+        clearMaskOnLostFocus: true,
+        autoUnmask: true
     });
 
 });

@@ -207,7 +207,6 @@ p {
 }
 
 
-
 @media print {
     .all-container {
         width: 100%; /* Para impressão, usa a largura total */
@@ -233,7 +232,8 @@ p {
     
     .signature-responsible-text {
         font-family: 'FontSignature';
-        transform: translateY(-15px);
+        transform: translateY(-25px);
+        display: block;
     }
 
     .print-button {

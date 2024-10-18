@@ -1,6 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 
+/* khakjsd */
 
+.t-auto-ar {
+    font-size: 3.6rem !important;
+    color: blue;
+    word-spacing: -3px;
+}
+
+.t-auto {
+    font-size: 1.9rem !important;
+    padding-bottom: 6px !important;
+    letter-spacing: -2px !important;
+
+}
+
+
+/* dhasd */
 :root {
     --fonte-title: 'Alfa Slab One', sans-serif;
 }
@@ -56,7 +72,7 @@ p {
 }
 
 .service-order {
-    margin-left: 80px !important;
+    margin-left: 60px !important;
 }
 
 .data-title,
@@ -71,7 +87,7 @@ p {
 }
 
 .text-month {
-    width: 120px;
+    width: 80px;
     height: 25px;
     border-bottom: 1px solid black;
 }
@@ -119,7 +135,7 @@ p {
 }
 
 .text_car {
-    width: 500px;
+    width: 480px;
     height: 25px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.507);
 }
@@ -166,6 +182,10 @@ p {
     height: 36px !important;
 }
 
+.fs-x {
+    font-size: 30px !important  ;
+}
+
 /* end table  */
 
 .border1 {
@@ -197,7 +217,7 @@ p {
 
 .signature-client,
 .signature-responsible {
-    width: 150px;
+    width: 220px;
     height: 30px;
 }
 
@@ -212,6 +232,7 @@ p {
         width: 100%; /* Para impressão, usa a largura total */
         height: auto; /* Altura automática para se ajustar ao conteúdo */
     }
+
 
     .bg-dark1 {
         background-color: black !important; /* Garante que a cor de fundo seja aplicada na impressão */

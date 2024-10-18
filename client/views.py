@@ -1,12 +1,18 @@
 from django.views import generic
 from .models import Client
-from .forms import FormClient
+from .forms import FormClient, FormRegisterLoja
 from django.urls import reverse_lazy
 
 
 class RegisterClientView(generic.CreateView):
     model = Client
     form_class = FormClient
+    template_name = '../templates/create_client.html'
+    success_url = reverse_lazy('client:list')
+
+class RegisterStoreView(generic.CreateView):
+    model = Client
+    form_class = FormRegisterLoja
     template_name = '../templates/create_client.html'
     success_url = reverse_lazy('client:list')
 

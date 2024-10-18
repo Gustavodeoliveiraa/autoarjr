@@ -10,6 +10,17 @@ urlpatterns = [
         name="register"
     ),
     path(
+        'client/register/loja',
+        views.RegisterStoreView.as_view(),
+        name="register_store"
+    ),
+    path(
+        'client/<int:pk>/delete',
+        views.DeleteClientView.as_view(),
+        name="delete"
+    ),
+    
+    path(
         'client/list/',
         views.ListClientView.as_view(),
         name="list"

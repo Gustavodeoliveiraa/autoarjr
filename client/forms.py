@@ -40,3 +40,18 @@ class FormClient(forms.ModelForm):
             raise forms.ValidationError('A placa deve estar no formato válido: AAA-9999 ou AAA9A99.')
 
         return plate
+
+
+class FormRegisterLoja(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['client_name',]
+        labels = {
+            'client_name': 'Nome',
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            field = self.fields[field]
+            field.widget.attrs['class'] = 'form-control'

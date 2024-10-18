@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Registrar Loja{% endblock title %}
+
+
+{% block main %}
+    <div class="container">
+        <h3 class="display-4 mb-3">Cadastrar Loja</h3>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}
+                                <div class="text-danger">
+                                    {{ field.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <input type="submit" class="btn btn-primary" value="Cadastrar">
+                </form>
+            </div>
+        </div>
+        <a class="btn btn-secondary mt-4" href="{% url "client:list" %}" role="button">
+            Cancelar e voltar para a lista de Clientes
+        </a>
+    </div>
+{% endblock main %}

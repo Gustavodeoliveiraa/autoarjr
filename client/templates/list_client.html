@@ -15,7 +15,12 @@
                     </button>
                 </div>
             </form>
-        </div>        
+        </div>  
+        <div class="col-md-6 mt-4 mt-md-0">
+            <a href="{% url "client:register" %}" class="btn btn-success float-end">
+                <i class="bi bi-plus"></i> Novo Cliente
+            </a>
+        </div>     
     </div>
 
     <div class="row mb-3">
@@ -31,8 +36,8 @@
             </form>
         </div>        
         <div class="col-md-6 mt-4 mt-md-0">
-            <a href="{% url "client:register" %}" class="btn btn-success float-end">
-                <i class="bi bi-plus"></i> Novo Cliente
+            <a href="{% url "client:register_store" %}" class="btn btn-success float-end">
+                <i class="bi bi-plus"></i>  Cadastrar Loja
             </a>
         </div>
     </div>

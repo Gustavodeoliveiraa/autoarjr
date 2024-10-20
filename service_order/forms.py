@@ -42,7 +42,10 @@ class FormRegisterServiceOrder(ModelForm):
         cellphone = self.cleaned_data['client_cellphone']
 
         if not re.match(r'^\(\d{2}\) \d{5}-\d{4}$', cellphone):
-            raise forms.ValidationError("Por favor, insira um número de telefone válido no formato (11) 99999-9999.")
+            raise forms.ValidationError(
+                "Por favor, insira um número de telefone \
+                    válido no formato (11) 99999-9999."
+            )
         return cellphone
 
     def clean_car_plate(self):
@@ -52,6 +55,8 @@ class FormRegisterServiceOrder(ModelForm):
         new_plate_pattern = r'^[A-Z]{3}\d[A-Z]\d{2}$'
 
         if not (re.match(old_plate_pattern, plate) or re.match(new_plate_pattern, plate)):  # type: ignore
-            raise forms.ValidationError('A placa deve estar no formato válido: AAA-9999 ou AAA9A99.')
+            raise forms.ValidationError(
+                'A placa deve estar no formato válido: AAA-9999 ou AAA9A99.'
+            )
 
         return plate

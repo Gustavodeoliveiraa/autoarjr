@@ -41,6 +41,9 @@ class ListClientView(generic.ListView):
         if car_plate:
             querySet = querySet.filter(car_plate__icontains=car_plate)
 
+        date_time = self.request.GET.get('date', '').strip()
+        if date_time:
+            querySet = querySet.filter(created_at=date_time)
         return querySet
 
 

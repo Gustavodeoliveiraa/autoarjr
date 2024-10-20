@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CategoryStorage, Storage
+from .models import Storage
 
 
 @admin.register(Storage)

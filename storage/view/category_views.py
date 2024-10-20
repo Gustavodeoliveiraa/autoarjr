@@ -1,4 +1,3 @@
-from django.db.models.query import QuerySet
 from ..models import CategoryStorage
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView

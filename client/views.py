@@ -2,6 +2,9 @@ from django.views import generic
 from .models import Client
 from .forms import FormClient, FormRegisterLoja
 from django.urls import reverse_lazy
+from utils.get_stripped_value import (
+    get_and_strip_request_param as strip_param
+)
 
 
 class RegisterClientView(generic.CreateView):
@@ -9,6 +12,7 @@ class RegisterClientView(generic.CreateView):
     form_class = FormClient
     template_name = '../templates/create_client.html'
     success_url = reverse_lazy('client:list')
+
 
 class RegisterStoreView(generic.CreateView):
     model = Client
@@ -25,23 +29,23 @@ class ListClientView(generic.ListView):
     def get_queryset(self):
         querySet = super().get_queryset()
 
-        car_name = self.request.GET.get('name', '').strip()
+        car_name = strip_param(self, 'name')
         if car_name:
             querySet = querySet.filter(client_name__icontains=car_name)
 
-        cellphone = self.request.GET.get('cellphone', '').strip()
+        cellphone = strip_param(self, 'cellphone')
         if cellphone:
             querySet = querySet.filter(cellphone__icontains=cellphone)
 
-        car_model = self.request.GET.get('car_model', '').strip()
+        car_model = strip_param(self, 'car_model')
         if car_model:
             querySet = querySet.filter(car_model__icontains=car_model)
 
-        car_plate = self.request.GET.get('plate', '').strip()
+        car_plate = strip_param(self, 'plate')
         if car_plate:
             querySet = querySet.filter(car_plate__icontains=car_plate)
 
-        date_time = self.request.GET.get('date', '').strip()
+        date_time = strip_param(self, 'date')
         if date_time:
             querySet = querySet.filter(created_at=date_time)
         return querySet

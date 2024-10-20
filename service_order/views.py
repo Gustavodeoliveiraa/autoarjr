@@ -88,4 +88,4 @@ class PrintServiceOrder(generic.DetailView):
 
         context['filtered_service'] = list_service
 
-        return context  
+        return context

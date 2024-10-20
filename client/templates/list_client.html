@@ -39,10 +39,8 @@
         </div> 
     </div>
 
-    <div class="row mb-3">
-        
-
-        <div class="col-md-3">
+    <div class="row ">
+        <div class="col-md-2">
             <form action="" method="">
                 <div class="input-group">
                     <input type="date" name="date" id="" class="form-control" value={{request.GET.date}}>
@@ -53,7 +51,7 @@
             </form>
         </div> 
 
-        <div class="col-md-8 mt-4 mt-md-0">
+        <div class="col-md-9 mt-4 mt-md-0">
             <a href="{% url "client:register_store" %}" class="btn btn-success float-end">
                 <i class="bi bi-plus"></i>  Cadastrar Loja
             </a>
@@ -94,10 +92,10 @@
                                 <i class="bi bi-filetype-pdf"></i>
                             </button>
                         </form>
-                        <a href="{% url "client:update" client.pk%}" class="btn btn-warning btn-sm">
+                        <a href="{% url "client:update" client.pk%}" title="Clique para Atualizar" class="btn btn-warning btn-sm">
                             <i class="bi bi-pencil"></i>
                         </a>
-                        <a href="{% url "client:delete" client.pk%}" class="btn btn-danger btn-sm">
+                        <a href="{% url "client:delete" client.pk%}" title="Clique para Deletar" class="btn btn-danger btn-sm">
                             <i class="bi bi-trash"></i>
                         </a>
                     </td>

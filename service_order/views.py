@@ -42,7 +42,7 @@ class ListServiceOrderView(generic.ListView):
 
         if paid:
             QuerySet = (
-                QuerySet.filter(paid=True) if paid == "1" else QuerySet.filter(paid=False) # noqa
+                QuerySet.filter(paid=True) if paid == "1" else QuerySet.filter(paid=False)
             )
 
         return QuerySet
@@ -88,4 +88,4 @@ class PrintServiceOrder(generic.DetailView):
 
         context['filtered_service'] = list_service
 
-        return context  
+        return context

@@ -29,5 +29,4 @@ urlpatterns = [
         name='print'
     ),
 
-    
 ]

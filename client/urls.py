@@ -19,7 +19,7 @@ urlpatterns = [
         views.DeleteClientView.as_view(),
         name="delete"
     ),
-    
+
     path(
         'client/list/',
         views.ListClientView.as_view(),

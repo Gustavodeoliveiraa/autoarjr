@@ -1,4 +1,5 @@
 # type: ignore
+from datetime import date, timedelta
 from django.test import TestCase
 from django.urls import reverse
 from service_order.models import ServiceOrder
@@ -148,6 +149,25 @@ class TestServiceOrderView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertInHTML('Client_P', response_filtered.content.decode())
         self.assertNotIn('Teste01', response_filtered.content.decode())
+
+    def test_if_service_order_will_be_filtered_by_date_with_successful(self):
+        now = date.today()
+
+        response = self.client.get(
+            reverse('service_order:list') + f'?date={now}'
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertInHTML('Teste01', response.content.decode())
+
+        yesterday = now - timedelta(days=1)
+
+        yesterday_response = self.client.get(
+            reverse('service_order:list') + f'?date={yesterday}'
+        )
+
+        self.assertEqual(yesterday_response.status_code, 200)
+        self.assertNotContains(yesterday_response, 'Teste01')
 
     # Update
     def test_if_service_order_will_be_updated_with_successful(self):

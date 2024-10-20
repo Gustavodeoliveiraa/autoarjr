@@ -2,6 +2,9 @@ from django.views import generic
 from django.urls import reverse_lazy
 from .models import ServiceOrder
 from .forms import FormRegisterServiceOrder
+from utils.get_stripped_value import (
+    get_and_strip_request_param as strip_param
+)
 
 
 class RegisterServiceOrder(generic.CreateView):
@@ -19,32 +22,22 @@ class ListServiceOrderView(generic.ListView):
     def get_queryset(self):
         QuerySet = super().get_queryset()
 
-        client_name = self.request.GET.get('client_name', '')
-        client_cellphone = self.request.GET.get('client_cellphone', '')
+        filters = {
+            'client_name__icontains': strip_param(self, 'client_name'),
+            'client_cellphone__icontains': strip_param(self, 'client_cellphone'),
+            'car_model__icontains': strip_param(self, 'car_model'),
+            'car_plate__icontains': strip_param(self, 'car_plate'),
+            'created_at__icontains': strip_param(self, 'date')
+        }
 
-        if client_name:
-            QuerySet = QuerySet.filter(client_name__icontains=client_name)
+        # remove empty values
+        filters = {key: value for key, value in filters.items() if key}
 
-        if client_cellphone:
-            QuerySet = QuerySet.filter(
-                client_cellphone__icontains=client_cellphone
-            )
-
-        car_model = self.request.GET.get('car_model', '')
-        car_plate = self.request.GET.get('car_plate', '')
-        paid = self.request.GET.get('paid', '')
-
-        if car_model:
-            QuerySet = QuerySet.filter(car_model__icontains=car_model)
-
-        if car_plate:
-            QuerySet = QuerySet.filter(car_plate__icontains=car_plate)
-
+        paid = strip_param(self, 'paid')
         if paid:
-            QuerySet = (
-                QuerySet.filter(paid=True) if paid == "1" else QuerySet.filter(paid=False)
-            )
+            filters['paid'] = True if paid == "1" else False  # type: ignore
 
+        QuerySet = QuerySet.filter(**filters) if filters else QuerySet
         return QuerySet
 
 

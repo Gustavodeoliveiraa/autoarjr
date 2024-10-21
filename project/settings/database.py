@@ -1,5 +1,8 @@
 import os
+from dotenv import load_dotenv
 from .environment import BASE_DIR
+
+load_dotenv()
 
 debug_mode = os.environ.get('DEBUG')
 

@@ -4,7 +4,7 @@ from .environment import BASE_DIR
 
 load_dotenv()
 
-debug_mode = os.environ.get('DEBUG')
+debug_mode = os.environ.get('DEBUG', '0')
 
 if debug_mode == '1':
     DATABASES = {

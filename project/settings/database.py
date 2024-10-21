@@ -25,4 +25,8 @@ if debug_mode == '0':
             'PORT': os.environ.get('PORT')
         }
     }
-print(os.getenv('USER'))
+print("Environment Variables:")
+for key, value in os.environ.items():
+    print(f"{key}: {value}")
+
+print(f"USER: {os.getenv('USER')}")

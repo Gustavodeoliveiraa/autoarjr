@@ -25,3 +25,4 @@ if debug_mode == '0':
             'PORT': os.environ.get('PORT')
         }
     }
+print(os.getenv('USER'))

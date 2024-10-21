@@ -12,4 +12,5 @@ class ServiceOrderAdmin(admin.ModelAdmin):
     ]
 
     search_fields = ['client_name', 'car_plate']
+    readonly_fields = []
     ordering = ['client_name']

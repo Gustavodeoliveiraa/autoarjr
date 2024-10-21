@@ -19,14 +19,9 @@ if debug_mode == '0':
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': os.environ.get('DATABASE_NAME'),
-            'USER': os.environ.get('USER'),
+            'USER': os.environ.get('DATABASE_USER'),
             'PASSWORD': os.environ.get('PASSWORD'),
             'HOST': os.environ.get('HOST'),
             'PORT': os.environ.get('PORT')
         }
     }
-print("Environment Variables:")
-for key, value in os.environ.items():
-    print(f"{key}: {value}")
-
-print(f"USER: {os.getenv('USER')}")

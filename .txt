@@ -1,0 +1,42 @@
+<gerais>
+Carga de Gás r134a
+Higienização Wurth
+Troca do filtro pólen
+Troca das válvulas de serviço
+Troca da Válvula de Expansão
+Mão de Obra
+
+-------------------------------------------------
+<compressor>
+Troca do Espelho do compressor
+Troca da Polia do compressor
+Troca do Rolamento da polia do compressor
+Troca da Bobina do compressor
+Troca da válvula torre
+Troca do Compressor
+Trica dos Reparos do Compressor
+Limpeza do Sistema
+
+-------------------------------------------------
+<condensador>
+Troca do Condensador
+Conserto do Condensador
+Troca do Filtro Secador
+
+<mangueiras>
+Troca da Mangueira de Descarga
+Troca da Mangueira de Sucção
+Troca da Mangueira de Liquido
+Conserto no Cano de Descarga
+Conserto no Cano de Sucção
+Conserto no Cano de Liquido
+
+
+<eletricos>
+
+Troca do Eletro Ventilador Interno
+Troca da Resistencia do Eletro Ventilador Interno
+Troca do Comando Do Ar Condicionado
+Troca do Sensor de pressão
+Troca do Rele do Compressor
+Troca do rele da Ventoinha

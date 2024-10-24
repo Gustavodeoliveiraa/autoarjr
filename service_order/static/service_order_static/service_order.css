@@ -1,3 +1,12 @@
 #paid {
     width: 100px;
 }
+
+.btn-group {
+    gap: 1rem !important
+}
+
+
+.dropdown-menu {
+    padding: 10px;
+}

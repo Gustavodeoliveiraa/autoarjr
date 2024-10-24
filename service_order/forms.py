@@ -1,16 +1,21 @@
 import re
 from django.forms import ModelForm
 from django import forms
-from .models import ServiceOrder
+from .models import ServiceOrder, Services
 
 
 class FormRegisterServiceOrder(ModelForm):
+    service1 = forms.ModelMultipleChoiceField(
+        queryset=Services.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
 
     class Meta:
         model = ServiceOrder
         fields = [
             'client_name', 'client_cellphone', 'car_model',
-            'car_plate', 'service_price', 'service', 'observation', 'paid',
+            'car_plate', 'service1', 'service_price', 'observation', 'paid',
             'cpf'
         ]
         labels = {
@@ -20,6 +25,7 @@ class FormRegisterServiceOrder(ModelForm):
             'car_plate': 'Placa',
             'service_price': 'Valor do Serviço',
             'service': 'Serviço feito',
+            'service1': 'Serviço feito',
             'paid': 'Pago',
             'observation': 'Observações',
             'cpf': 'CPF / CNPJ'
@@ -37,6 +43,7 @@ class FormRegisterServiceOrder(ModelForm):
         self.fields['car_plate'].widget.attrs['id'] = 'id_car_plate'
         self.fields['client_cellphone'].widget.attrs['id'] = 'cellphone'
         self.fields['cpf'].widget.attrs['id'] = 'cpf'
+        self.fields['service1'].widget.attrs['class'] = ''
 
     def clean_client_cellphone(self):
         cellphone = self.cleaned_data['client_cellphone']

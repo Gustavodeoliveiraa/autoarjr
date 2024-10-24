@@ -1,6 +1,6 @@
 from django.views import generic
 from django.urls import reverse_lazy
-from .models import ServiceOrder
+from .models import ServiceOrder, Services, ServiceCategory
 from .forms import FormRegisterServiceOrder
 from utils.get_stripped_value import (
     get_and_strip_request_param as strip_param
@@ -12,6 +12,12 @@ class RegisterServiceOrder(generic.CreateView):
     form_class = FormRegisterServiceOrder
     success_url = reverse_lazy('service_order:list')
     template_name = '../templates/register_service_order.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['service1'] = Services.objects.all()
+        context['categories'] = ServiceCategory.objects.all()
+        return context
 
 
 class ListServiceOrderView(generic.ListView):
@@ -46,6 +52,12 @@ class UpdateServiceOrderView(generic.UpdateView):
     form_class = FormRegisterServiceOrder
     success_url = reverse_lazy('service_order:list')
     template_name = '../templates/update_service_order.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['service1'] = Services.objects.all()
+        context['categories'] = ServiceCategory.objects.all()
+        return context
 
 
 class DetailServiceOrderView(generic.DetailView):

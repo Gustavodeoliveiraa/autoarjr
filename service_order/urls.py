@@ -9,7 +9,7 @@ urlpatterns = [
         name='register'
     ),
     path(
-        '', views.ListServiceOrderView.as_view(),
+        'service_order/list', views.ListServiceOrderView.as_view(),
         name='list'
     ),
     path(

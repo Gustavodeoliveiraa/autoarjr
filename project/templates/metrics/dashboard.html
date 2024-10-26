@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block js %} {% static "client_static/client.js" %} {% endblock js %}
+{% block title %}DashBoard{% endblock title %}
+
+{% block main %}
+
+    <div class="container-fluid ps-5 pe-5">
+        <div class="card">
+            <div class="row p-2">
+                <div class="col-3">
+                    <div class="card bg-primary">
+                    <div class="card-body">
+                            <h5 class="card-title">Quantidade de Carros Feitos</h5>
+                            <p class="card-text text-white font-wheight-bold display-6">{{total_of_cars_made}}</p>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="card bg-danger">
+                        <div class="card-body">
+                            <h5 class="card-title">CPF / CNPJ cadastrados</h5>
+                            <p class="card-text text-white font-wheight-bold display-6">{{total_cpf_registered}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="card bg-secondary">
+                        <div class="card-body">
+                            <h5 class="card-title">Clientes Cadastrados</h5>
+                            <p class="card-text text-white font-wheight-bold display-6">{{total_clients_registered}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="card bg-success">
+                        <div class="card-body">
+                            <h5 class="card-title">Total de Vendas</h5>
+                            <p class="card-text text-white font-wheight-bold display-6">R$ {{total_selling|floatformat:2}}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid me-4">
+            <div class="row mt-5">
+                <div class="col-6">
+                    <h5 class="display-6 text-center mb-4 mt-4">Total vendido nos ultimos 7 dias</h5>
+                    <div class=""> 
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+    
+                <div class="col-6">
+                    <h5 class="display-6 text-center mb-4 mt-4">Vendas por dias ( Ultimos 7 Dias ) </h5>
+                    <div class="" height="200">
+                        <canvas id="selles_per_day_of_week" class="embed-responsive-item"></canvas>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row mt-5">
+                <div class="col-6">
+                    <h5 class="display-6 text-center mb-4 mt-4">Quantidade de Carros Consertados por Loja</h5>
+                    <div class=""> 
+                        <canvas id="car_fix_per_store" style="height: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <script>
+        const ctx = document.getElementById('myChart');
+        const sales_on_weekend = {{total_value_of_sales_for_day_of_week|safe}}
+        console.log(sales_on_weekend)
+      
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: sales_on_weekend.dates,
+            datasets: [{
+              label: 'Total vendido por dia ( ultimos 7 dias )',
+              data: sales_on_weekend.values,
+              borderWidth: 1,
+              borderColor: [
+              'rgba(13, 110, 251, 1)',
+              ],
+            }],
+          },
+          options: {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        // Customiized the tooltip for show "Total vendido no dia [dia]"
+                        label: function(context) {
+                            const day = context.label;  // The day of te week of the label
+                            const value = context.raw;  // The value corresponding to the total sold
+                            return `Total vendido na ${day}: ${value}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+        const sales_per_day_of_week_chart = document.getElementById('selles_per_day_of_week');
+        const sales_per_day_of_week_data = {{sales_by_day_of_the_week|safe}}
+
+        new Chart(sales_per_day_of_week_chart, {
+            type: 'bar',
+            data: {
+              labels: sales_per_day_of_week_data.data,
+              datasets: [{
+                label: 'Carros fetos por dia ( ultimo 7 dias )',
+                data: sales_per_day_of_week_data.values,
+                borderWidth: 1,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'],
+                    borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+        });
+
+        const car_fix_per_store = document.getElementById('car_fix_per_store');
+        const car_fix_per_store_data = {{quantity_of_cars_that_each_store_fix|safe}}
+
+        new Chart(car_fix_per_store, {
+            type: 'doughnut',
+            data: {
+              labels: car_fix_per_store_data.all_store,
+              datasets: [{
+                label: 'A loja fez tantos carros',
+                data: car_fix_per_store_data.values,
+                borderWidth: 1,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'],
+                    borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+        });
+
+
+
+      </script>
+{% endblock main %}

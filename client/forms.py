@@ -60,3 +60,12 @@ class FormRegisterLoja(forms.ModelForm):
         for field in self.fields:
             field = self.fields[field]
             field.widget.attrs['class'] = 'form-control'
+
+    def save(self, commit=True):
+
+        instance = super().save(commit=False)
+        instance.is_store = True
+
+        if commit:
+            instance.save()
+        return instance

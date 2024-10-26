@@ -55,3 +55,17 @@ def get_total_amount_of_made_on_week():
         dates=[day.strftime('%A') for day in last_7_days],
         values=values
     )
+
+
+def get_total_quantity_of_cars_that_each_store_fix():
+    all_store = [store.client_name for store in Client.objects.filter(is_store=True).exclude(is_store=False)]
+    data = list()
+
+    for store in all_store:
+        value = ServiceOrder.objects.filter(client_name=store).count()
+        data.append(value)
+
+    return dict(
+        all_store=all_store,
+        values=data
+    )

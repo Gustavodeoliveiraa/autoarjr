@@ -15,6 +15,7 @@ class DashBoardView(View):
 
             'total_value_of_sales_for_day_of_week': metrics.get_total_amount_of_made_on_week(),
             'sales_by_day_of_the_week': metrics.get_total_amount_of_cars_made_per_day_on_the_last_7_days(),
+            'quantity_of_cars_that_each_store_fix': metrics.get_total_quantity_of_cars_that_each_store_fix()
         }
 
         return render(request, self.template_name, data)

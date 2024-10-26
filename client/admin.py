@@ -7,7 +7,8 @@ class AdminClient(admin.ModelAdmin):
     model = Client
 
     list_display = [
-        'client_name', 'cellphone', 'car_model', 'car_plate', 'created_at'
+        'client_name', 'cellphone', 'car_model', 'car_plate', 'is_store',
+        'created_at'
     ]
     readonly_fields = ['created_at']
     search_fields = ['client_name', 'cellphone']

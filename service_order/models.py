@@ -25,3 +25,6 @@ class ServiceOrder(models.Model):
 
     class Meta:
         ordering = ['-id']
+
+    def __str__(self) -> str:
+        return str(self.client_name)

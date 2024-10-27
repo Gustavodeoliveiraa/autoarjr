@@ -62,7 +62,7 @@ def get_total_quantity_of_cars_that_each_store_fix():
     data = list()
 
     for store in all_store:
-        value = ServiceOrder.objects.filter(client_name=store).count()
+        value = ServiceOrder.objects.filter(client_name=store.strip()).count()
         data.append(value)
 
     return dict(

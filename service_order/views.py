@@ -16,6 +16,7 @@ class RegisterServiceOrder(generic.CreateView):
 
 class ListServiceOrderView(generic.ListView):
     model = ServiceOrder
+    paginate_by = 25
     context_object_name = 'service_orders'
     template_name = '../templates/list_service_order.html'
 

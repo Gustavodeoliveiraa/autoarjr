@@ -23,6 +23,7 @@ class RegisterStoreView(generic.CreateView):
 
 class ListClientView(generic.ListView):
     model = Client
+    paginate_by = 25
     template_name = '../templates/list_client.html'
     context_object_name = 'clients'
 

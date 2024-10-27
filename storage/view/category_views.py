@@ -13,6 +13,7 @@ class RegisterCategory(CreateView):
 
 class ListCategories(ListView):
     model = CategoryStorage
+    paginate_by = 10
     context_object_name = 'items'
     template_name = '../templates/category/list_category.html'
 

@@ -16,6 +16,7 @@ class RegisterStorage(CreateView):
 
 class ListStorageView(ListView):
     model = Storage
+    paginate_by = 10
     context_object_name = 'products'
     template_name = '../templates/storage/list_storage.html'
 

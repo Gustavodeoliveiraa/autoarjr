@@ -15,7 +15,7 @@ class AdminClient(admin.ModelAdmin):
 
     fieldsets = (
         ('Client Information', {
-            'fields': ('client_name', 'cellphone')
+            'fields': ('client_name', 'cellphone', 'is_store')
         }),
         ('Car Information', {
             'fields': ('car_model', 'car_plate')

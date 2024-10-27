@@ -15,3 +15,10 @@ ALLOWED_HOSTS = ['*']
 ROOT_URLCONF = 'project.urls'
 
 WSGI_APPLICATION = 'project.wsgi.application'
+
+SESSION_COOKIE_AGE = 30 * 24 * 60 * 60  # 30 days in seconds
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+LOGIN_URL = '/account/login'
+LOGIN_REDIRECT_URL = '/client/list'
+LOGOUT_REDIRECT_URL = '/account/login'

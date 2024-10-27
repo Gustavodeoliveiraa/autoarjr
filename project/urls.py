@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('storage.urls')),
     path('', include('client.urls')),
     path('', include('service_order.urls')),
+    path('', include('account.urls')),
 ]

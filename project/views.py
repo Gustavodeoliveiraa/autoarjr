@@ -1,9 +1,10 @@
 from django.views import View
 from django.shortcuts import render
 from project import metrics
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 
-class DashBoardView(View):
+class DashBoardView(LoginRequiredMixin, View):
     template_name = '../templates/metrics/dashboard.html'
 
     def get(self, request):

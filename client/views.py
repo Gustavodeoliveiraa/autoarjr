@@ -5,23 +5,30 @@ from django.urls import reverse_lazy
 from utils.get_stripped_value import (
     get_and_strip_request_param as strip_param
 )
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 
-class RegisterClientView(generic.CreateView):
+class RegisterClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.CreateView):
     model = Client
     form_class = FormClient
     template_name = '../templates/create_client.html'
     success_url = reverse_lazy('client:list')
+    permission_required = [
+        'client.add_client', 'client.change.client', 'client.delete.client'
+    ]
 
 
-class RegisterStoreView(generic.CreateView):
+class RegisterStoreView(PermissionRequiredMixin, LoginRequiredMixin, generic.CreateView):
     model = Client
     form_class = FormRegisterLoja
     template_name = '../templates/create_client.html'
     success_url = reverse_lazy('client:list')
+    permission_required = [
+        'client.add_client', 'client.change.client', 'client.delete.client'
+    ]
 
 
-class ListClientView(generic.ListView):
+class ListClientView(LoginRequiredMixin, generic.ListView):
     model = Client
     paginate_by = 25
     template_name = '../templates/list_client.html'
@@ -52,14 +59,16 @@ class ListClientView(generic.ListView):
         return querySet
 
 
-class UpdateClientView(generic.UpdateView):
+class UpdateClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.UpdateView):
     model = Client
     form_class = FormClient
     template_name = '../templates/update_client.html'
     success_url = reverse_lazy('client:list')
+    permission_required = 'client.change_client'
 
 
-class DeleteClientView(generic.DeleteView):
+class DeleteClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.DeleteView):
     model = Client
     template_name = '../templates/delete_client.html'
     success_url = reverse_lazy('client:list')
+    permission_required = 'client.delete_client'

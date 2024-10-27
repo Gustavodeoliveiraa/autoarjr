@@ -25,7 +25,9 @@
 <body>
     <div class="container-fluid d-sm-block d-md-flex" >
         
-        {% include "components/_sidebar.html" %}
+        {% if user.is_authenticated %}
+            {% include "components/_sidebar.html" %}
+        {% endif %}
         
         <div class="col py-3">
         <h3 class="display mt-4 mb-4 d-none d-md-block">

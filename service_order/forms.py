@@ -10,7 +10,7 @@ class FormRegisterServiceOrder(ModelForm):
         model = ServiceOrder
         fields = [
             'client_name', 'client_cellphone', 'car_model',
-            'car_plate', 'service_price', 'service', 'observation', 'paid',
+            'car_plate', 'service', 'service_price', 'observation', 'paid',
             'cpf'
         ]
         labels = {

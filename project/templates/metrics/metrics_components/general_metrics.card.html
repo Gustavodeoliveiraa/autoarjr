@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="row p-2">
+        <div class="col-3">
+            <div class="card bg-primary">
+            <div class="card-body">
+                    <h5 class="card-title">Quantidade de Carros Feitos</h5>
+                    <p class="card-text text-white font-wheight-bold display-6">{{total_of_cars_made}}</p>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="card bg-danger">
+                <div class="card-body">
+                    <h5 class="card-title">CPF / CNPJ cadastrados</h5>
+                    <p class="card-text text-white font-wheight-bold display-6">{{total_cpf_registered}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="card bg-secondary">
+                <div class="card-body">
+                    <h5 class="card-title">Clientes Cadastrados</h5>
+                    <p class="card-text text-white font-wheight-bold display-6">{{total_clients_registered}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="card bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Total de Vendas</h5>
+                    <p class="card-text text-white font-wheight-bold display-6">R$ {{total_selling|floatformat:2}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

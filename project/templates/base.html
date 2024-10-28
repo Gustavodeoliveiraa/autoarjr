@@ -23,7 +23,19 @@
     <title> SGE | {% block title %}{% endblock title %} </title>
 </head>
 <body>
-    <div class="container-fluid d-sm-block d-md-flex" >
+    <div class="container-fluid d-sm-block d-md-flex position-relative justify-content-center" >
+
+        <div class="position-absolute top-30 start-30 text-center w-75">
+            {% if messages %}
+                <div class="w-100 justify-content-center align-item-center">
+                    <div class="alert alert-warning">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
         
         {% if user.is_authenticated %}
             {% include "components/_sidebar.html" %}

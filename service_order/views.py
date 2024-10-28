@@ -1,20 +1,29 @@
 from django.views import generic
 from django.urls import reverse_lazy
+from django.contrib import messages
+from django.shortcuts import redirect
 from .models import ServiceOrder
 from .forms import FormRegisterServiceOrder
 from utils.get_stripped_value import (
     get_and_strip_request_param as strip_param
 )
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 
-class RegisterServiceOrder(generic.CreateView):
+class RegisterServiceOrder(PermissionRequiredMixin, LoginRequiredMixin, generic.CreateView):
     model = ServiceOrder
     form_class = FormRegisterServiceOrder
     success_url = reverse_lazy('service_order:list')
     template_name = '../templates/register_service_order.html'
+    permission_required = 'service_order.add_serviceorder'
+    permission_denied_message = 'Você não tem permissão para criar ordens de serviço !'
+
+    def handle_no_permission(self):
+        messages.warning(self.request, self.permission_denied_message)
+        return redirect('service_order:list')
 
 
-class ListServiceOrderView(generic.ListView):
+class ListServiceOrderView(LoginRequiredMixin, generic.ListView):
     model = ServiceOrder
     paginate_by = 25
     context_object_name = 'service_orders'
@@ -42,26 +51,44 @@ class ListServiceOrderView(generic.ListView):
         return QuerySet
 
 
-class UpdateServiceOrderView(generic.UpdateView):
+class UpdateServiceOrderView(PermissionRequiredMixin, LoginRequiredMixin, generic.UpdateView):
     model = ServiceOrder
     form_class = FormRegisterServiceOrder
     success_url = reverse_lazy('service_order:list')
     template_name = '../templates/update_service_order.html'
+    permission_required = 'service_order.change_serviceorder'
+    permission_denied_message = 'Você não tem permissão para atualizar ordens de serviço !'
+
+    def handle_no_permission(self):
+        messages.warning(self.request, self.permission_denied_message)
+        return redirect('service_order:list')
 
 
-class DetailServiceOrderView(generic.DetailView):
+class DetailServiceOrderView(PermissionRequiredMixin, LoginRequiredMixin, generic.DetailView):
     model = ServiceOrder
     context_object_name = 'service_order'
     template_name = '../templates/detail_service_order.html'
+    permission_required = 'service_order.view_serviceorder'
+    permission_denied_message = 'Você não tem permissão para visualizar ordens de serviço !'
+
+    def handle_no_permission(self):
+        messages.warning(self.request, self.permission_denied_message)
+        return redirect('service_order:list')
 
 
-class DeleteServiceOrderView(generic.DeleteView):
+class DeleteServiceOrderView(PermissionRequiredMixin, LoginRequiredMixin, generic.DeleteView):
     model = ServiceOrder
     success_url = reverse_lazy('service_order:list')
     template_name = '../templates/delete_service_order.html'
+    permission_required = 'service_order.delete_serviceorder'
+    permission_denied_message = 'Você não tem permissão para deletar ordens de serviço !'
+
+    def handle_no_permission(self):
+        messages.warning(self.request, self.permission_denied_message)
+        return redirect('service_order:list')
 
 
-class PrintServiceOrder(generic.DetailView):
+class PrintServiceOrder(LoginRequiredMixin, generic.DetailView):
     model = ServiceOrder
     context_object_name = 'service_order'
     template_name = '../templates/print_service_order.html'

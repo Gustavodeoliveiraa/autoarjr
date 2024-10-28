@@ -40,11 +40,15 @@
             </form>
         </div>
 
+        
         <div class="col-md-6 mt-4 mt-md-0">
-            <a href="{% url 'service_order:register' %}" class="btn btn-success float-end">
+            <a href="{% url 'service_order:register' %}" class="btn btn-success float-end {% if not perms.service_order.add_serviceorder %} disabled {% endif %}">
                 <i class="bi bi-plus"></i> Nova Ordem de Serviço
             </a>
         </div>
+
+        
+
     </div>
     <div class="row ">
         <div class="col-md-2">

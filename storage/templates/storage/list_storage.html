@@ -33,7 +33,7 @@
             </form>
         </div>
         <div class="col-md-8 mt-4 mt-md-0">
-            <a href="{% url 'storage:storage_create' %}" class="btn btn-success float-end">
+            <a href="{% url 'storage:storage_create' %}" class="btn btn-success float-end {% if not perms.storage.add_storage %} disabled {% endif %}">
                 <i class="bi bi-plus"></i> Novo Produto
             </a>
         </div>

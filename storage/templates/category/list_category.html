@@ -16,8 +16,8 @@
         </div>
              
         <div class="col-md-6 mb-4 mb-sm-0">
-            <a href="{% url "storage:create_category" %}" class="btn btn-success float-end">
-                <i class="bi bi-plus">Nova categoria</i>
+            <a href="{% url "storage:create_category" %}" class="btn btn-success float-end {% if not perms.storage.add_categorystorage %} disabled {% endif %}">
+                <i class="bi bi-plus">Nova categoria</i>                                   
             </a>
         </div>
     </div>

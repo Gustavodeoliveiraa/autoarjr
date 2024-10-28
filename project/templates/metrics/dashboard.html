@@ -7,46 +7,12 @@
 {% block main %}
 
     <div class="container-fluid ps-5 pe-5">
-        <div class="card">
-            <div class="row p-2">
-                <div class="col-3">
-                    <div class="card bg-primary">
-                    <div class="card-body">
-                            <h5 class="card-title">Quantidade de Carros Feitos</h5>
-                            <p class="card-text text-white font-wheight-bold display-6">{{total_of_cars_made}}</p>
-                    </div>
-                    </div>
-                </div>
+      <h4 class="mt-4">Metricas Gerais</h4>
+      {% include " ../../metrics/metrics_components/general_metrics.card.html" %}
 
-                <div class="col-3">
-                    <div class="card bg-danger">
-                        <div class="card-body">
-                            <h5 class="card-title">CPF / CNPJ cadastrados</h5>
-                            <p class="card-text text-white font-wheight-bold display-6">{{total_cpf_registered}}</p>
-                        </div>
-                    </div>
-                </div>
+      <h4 class="mt-4">Metrcas  semanais</h4>
+      {% include " ../../metrics/metrics_components/metrics_of_week.card.html" %}
 
-                <div class="col-3">
-                    <div class="card bg-secondary">
-                        <div class="card-body">
-                            <h5 class="card-title">Clientes Cadastrados</h5>
-                            <p class="card-text text-white font-wheight-bold display-6">{{total_clients_registered}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-3">
-                    <div class="card bg-success">
-                        <div class="card-body">
-                            <h5 class="card-title">Total de Vendas</h5>
-                            <p class="card-text text-white font-wheight-bold display-6">R$ {{total_selling|floatformat:2}}</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
 
         <div class="container-fluid me-4">
             <div class="row mt-5">
@@ -81,7 +47,7 @@
 
     <script>
         const ctx = document.getElementById('myChart');
-        const sales_on_weekend = {{total_value_of_sales_for_day_of_week|safe}}
+        const sales_on_weekend = {{total_value_of_sales_per_day_on_week|safe}}
         console.log(sales_on_weekend)
       
         new Chart(ctx, {

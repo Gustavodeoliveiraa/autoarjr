@@ -1,7 +1,7 @@
 from django.views import View
 from django.shortcuts import render
 from project import metrics
-from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class DashBoardView(LoginRequiredMixin, View):
@@ -9,14 +9,25 @@ class DashBoardView(LoginRequiredMixin, View):
 
     def get(self, request):
         data = {
-            'total_of_cars_made': metrics.get_total_amount_of_cars_made(),
+            # total metrics
+            'total_of_cars_made': metrics.get_total_quantity_of_cars_made(),
+            'total_cpf_registered': metrics.get_total_quantity_of_cps_registered(),
+            'total_clients_registered': metrics.get_total_quantity_of_clients_registered(),
             'total_selling': metrics.get_total_amount_selling(),
-            'total_cpf_registered': metrics.get_total_amount_of_cps_registered(),
-            'total_clients_registered': metrics.get_total_amount_of_clients_registered(),
+            # end total metrics
 
-            'total_value_of_sales_for_day_of_week': metrics.get_total_amount_of_made_on_week(),
-            'sales_by_day_of_the_week': metrics.get_total_amount_of_cars_made_per_day_on_the_last_7_days(),
+            # metrics of week
+            'total_of_cars_made_on_week': metrics.get_total_quantity_of_car_made_on_week(),
+            'total_of_clients_registered_on_week': metrics.get_total_quantity_of_clients_registered_on_week(),
+            'total_amount_of_selling_on_week': metrics.get_total_amount_of_selling_on_week(),
+            # end metrics of week
+
+
+            # metrics of week  (chart)
+            'total_value_of_sales_per_day_on_week': metrics.get_total_amount_made_per_day_on_week(),
+            'sales_by_day_of_the_week': metrics.get_total_quantity_of_cars_made_per_day_on_week(),
             'quantity_of_cars_that_each_store_fix': metrics.get_total_quantity_of_cars_that_each_store_fix()
+            # end metrics of week  (chart)
         }
 
         return render(request, self.template_name, data)

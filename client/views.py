@@ -1,3 +1,5 @@
+from django.shortcuts import redirect
+from django.contrib import messages
 from django.views import generic
 from .models import Client
 from .forms import FormClient, FormRegisterLoja
@@ -16,6 +18,11 @@ class RegisterClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.Cr
     permission_required = [
         'client.add_client', 'client.change.client', 'client.delete.client'
     ]
+    permission_denied_message = 'Você não tem permissão para registrar clientes'
+
+    def handle_no_permission(self):
+        messages.warning(self.request, self.permission_denied_message)
+        return redirect('service_order:list')
 
 
 class RegisterStoreView(PermissionRequiredMixin, LoginRequiredMixin, generic.CreateView):
@@ -26,6 +33,11 @@ class RegisterStoreView(PermissionRequiredMixin, LoginRequiredMixin, generic.Cre
     permission_required = [
         'client.add_client', 'client.change.client', 'client.delete.client'
     ]
+    permission_denied_message = 'Você não tem permissão para registrar lojas'
+
+    def handle_no_permission(self):
+        messages.warning(self.request, self.permission_denied_message)
+        return redirect('service_order:list')
 
 
 class ListClientView(LoginRequiredMixin, generic.ListView):
@@ -65,6 +77,11 @@ class UpdateClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.Upda
     template_name = '../templates/update_client.html'
     success_url = reverse_lazy('client:list')
     permission_required = 'client.change_client'
+    permission_denied_message = 'Você não tem permissão para atualizar clientes'
+
+    def handle_no_permission(self):
+        messages.warning(self.request, self.permission_denied_message)
+        return redirect('service_order:list')
 
 
 class DeleteClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.DeleteView):
@@ -72,3 +89,8 @@ class DeleteClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.Dele
     template_name = '../templates/delete_client.html'
     success_url = reverse_lazy('client:list')
     permission_required = 'client.delete_client'
+    permission_denied_message = 'Você não tem permissão para deletar clientes'
+
+    def handle_no_permission(self):
+        messages.warning(self.request, self.permission_denied_message)
+        return redirect('service_order:list')

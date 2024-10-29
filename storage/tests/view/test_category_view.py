@@ -1,11 +1,19 @@
+# type: ignore
+
 from django.test import TestCase
 from django.urls import reverse
 from storage.models import CategoryStorage
+from django.test import Client as TestClient
+from django.contrib.auth.models import User
 
 
 class TestCategoryView(TestCase):
 
     def setUp(self) -> None:
+
+        self.user = User.objects.create_superuser(username='gustavo', password='12345')
+        self.client = TestClient()
+        self.client.login(username='gustavo', password='12345')
         self.client.post(
             reverse('storage:create_category'),
             data={

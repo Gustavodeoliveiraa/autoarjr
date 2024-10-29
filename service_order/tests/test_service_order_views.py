@@ -6,10 +6,17 @@ from service_order.models import ServiceOrder
 from utils.create_service_order_function import (
     shortcut_create_service_order as create_order
 )
+from django.test import Client as TestClient
+from django.contrib.auth.models import User
 
 
 class TestServiceOrderView(TestCase):
     def setUp(self) -> None:
+
+        self.user = User.objects.create_superuser(username='gustavo', password='12345')  # type: ignore
+        self.client = TestClient()
+        self.client.login(username='gustavo', password='12345')
+
         create_order(
             'teste01', '(00) 00000-0000', 'car_01', 'ZZZ-1111', 500,
             'Troca do compressor, Troca do condensador', False

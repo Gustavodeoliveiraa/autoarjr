@@ -1,13 +1,20 @@
 # type: ignore
 
 from django.test import TestCase
+from django.test import Client as TestClient
 from django.urls import reverse
 from client.models import Client
 from datetime import date, timedelta
+from django.contrib.auth.models import User
 
 
 class TestClientView(TestCase):
     def setUp(self) -> None:
+
+        self.user = User.objects.create_superuser(username='gustavo', password='12345')
+        self.client = TestClient()
+        self.client.login(username='gustavo', password='12345')
+
         Client.objects.create(
             client_name='gustavo',
             cellphone="11030239923",

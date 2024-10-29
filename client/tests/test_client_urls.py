@@ -1,10 +1,18 @@
 from django.test import TestCase
 from django.urls import reverse
 from client.models import Client
+from django.test import Client as TestClient
+from django.contrib.auth.models import User
 
 
 class TestClientUrl(TestCase):
+
     def setUp(self) -> None:
+
+        self.user = User.objects.create_superuser(username='gustavo', password='12345')  # type: ignore
+        self.client = TestClient()
+        self.client.login(username='gustavo', password='12345')
+
         Client.objects.create(
             client_name='client_test', cellphone='11939239972',
         )

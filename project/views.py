@@ -1,11 +1,17 @@
 from django.views import View
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from project import metrics
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 
 class DashBoardView(LoginRequiredMixin, View):
     template_name = '../templates/metrics/dashboard.html'
+    permission_denied_message = 'Você não tem permissão para acessar essa pagina'
+
+    def handle_no_permission(self):
+        messages.warning(self.request, self.permission_denied_message)
+        return redirect('service_order:list')
 
     def get(self, request):
         data = {

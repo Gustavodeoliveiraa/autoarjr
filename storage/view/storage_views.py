@@ -36,7 +36,7 @@ class ListStorageView(LoginRequiredMixin, ListView):
         return context
 
     def get_queryset(self):
-        querySet = super().get_queryset()
+        querySet = super().get_queryset().select_related('category')
 
         name = self.request.GET.get('name')
         if name:

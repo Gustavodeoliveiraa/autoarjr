@@ -22,3 +22,10 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 LOGIN_URL = '/account/login'
 LOGIN_REDIRECT_URL = '/client/list'
 LOGOUT_REDIRECT_URL = '/account/login'
+
+
+# debug toolbar
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

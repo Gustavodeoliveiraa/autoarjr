@@ -33,17 +33,17 @@
         </div>        
 
         <div class="col-md-6 mt-4 mt-md-0">
-            <a href="{% url "client:register" %}" class="btn btn-success float-end">
+            <a href="{% url "client:register" %}" class="btn btn-success float-end {% if not perms.client.add_client %} disabled {% endif %}">
                 <i class="bi bi-plus"></i> Novo Cliente
             </a>
         </div> 
     </div>
 
-    <div class="row ">
-        <div class="col-md-2">
+    <div class="row">
+        <div class="col-5 col-md-5 col-lg-3 col-xl-2">
             <form action="" method="">
                 <div class="input-group">
-                    <input type="date" name="date" id="" class="form-control" value={{request.GET.date}}>
+                    <input type="date" name="date" id="" class="form-control fs-sm-1" value={{request.GET.date}}>
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-search"></i>
                     </button>
@@ -51,8 +51,8 @@
             </form>
         </div> 
 
-        <div class="col-md-9 mt-4 mt-md-0">
-            <a href="{% url "client:register_store" %}" class="btn btn-success float-end">
+        <div class="col-7 col-md-6 col-lg-8 col-xl-9">
+            <a href="{% url "client:register_store" %}" class="btn btn-success float-end {% if not perms.client.add_client %} disabled {% endif %}">
                 <i class="bi bi-plus"></i>  Cadastrar Loja
             </a>
         </div>

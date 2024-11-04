@@ -1,0 +1,50 @@
+.sidebar-container {
+    cursor: pointer;
+    height: 100vh;
+    width: 25px;
+    background-color: transparent;
+    z-index: 10;
+    transition: width 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), background-color 0.6s ease;
+    position: sticky !important;
+}
+
+.sidebar-container:hover {
+    width: 250px;
+    background-color: rgb(36, 41, 45);
+}
+
+.sidebar-fixed {
+    width: 250px;
+    display: flex;
+    background-color: rgb(36, 41, 45);
+}
+
+.top-10 {
+    top: 10px !important;
+}
+
+.sidebar-fixed .bi-chevron-double-right {
+    display: none;
+}
+
+.bi-chevron-double-right {
+    font-size: 20px;
+}
+
+.sidebar-container:hover .bi-chevron-double-right {
+    color: transparent;
+}
+
+.sidebar-container:hover .bi-pin {
+    display: initial;
+}
+
+.bi-pin {
+    display: none;
+    top: 10px;
+    transition: transform 0.4s ease;
+}
+
+.bi-pin:hover {
+    transform: scale(1.1);
+}

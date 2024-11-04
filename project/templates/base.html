@@ -17,13 +17,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="{% block style %}{% endblock style %}">
+    <link rel="stylesheet" href="{% static "project_static/project.css" %}">
+    <script src="{% static 'project_static/project.js' %}" defer></script>
 
     <script src="{% block js %}{% endblock js %}" defer></script>
 
     <title> SGE | {% block title %}{% endblock title %} </title>
 </head>
 <body>
-    <div class="container-fluid d-sm-block d-md-flex position-relative justify-content-center" >
+    <div class="container-fluid d-sm-block d-md-flex position-relative justify-content-center p-0" >
 
         <div class="position-absolute top-30 start-30 text-center w-75">
             {% if messages %}
@@ -38,12 +40,12 @@
         </div>
         
         {% if user.is_authenticated %}
-            {% include "components/_sidebar.html" %}
+            {% include "components/sidebar.html" %}
         {% endif %}
         
-        <div class="col py-3">
+        <div class="col py-3 ps-3">
         <h3 class="display mt-4 mb-4 d-none d-md-block">
-            Sistema Genrenciador de Estoque (SGE)
+            <a href="{% url "service_order:list" %}" class="text-decoration-none text-white">Sistema Genrenciador de Estoque (SGE)</a>
         </h3>
 
             <div class="container-fluid ps-4">

@@ -16,13 +16,13 @@ class RegisterClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.Cr
     template_name = '../templates/create_client.html'
     success_url = reverse_lazy('client:list')
     permission_required = [
-        'client.add_client', 'client.change.client', 'client.delete.client'
+        'client.add_client', 'client.change_client', 'client.delete_client'
     ]
     permission_denied_message = 'Você não tem permissão para registrar clientes'
 
     def handle_no_permission(self):
         messages.warning(self.request, self.permission_denied_message)
-        return redirect('service_order:list')
+        return redirect('client:list')
 
 
 class RegisterStoreView(PermissionRequiredMixin, LoginRequiredMixin, generic.CreateView):
@@ -31,13 +31,13 @@ class RegisterStoreView(PermissionRequiredMixin, LoginRequiredMixin, generic.Cre
     template_name = '../templates/create_client.html'
     success_url = reverse_lazy('client:list')
     permission_required = [
-        'client.add_client', 'client.change.client', 'client.delete.client'
+        'client.add_client', 'client.change_client', 'client.delete_client'
     ]
     permission_denied_message = 'Você não tem permissão para registrar lojas'
 
     def handle_no_permission(self):
         messages.warning(self.request, self.permission_denied_message)
-        return redirect('service_order:list')
+        return redirect('client:list')
 
 
 class ListClientView(LoginRequiredMixin, generic.ListView):
@@ -81,7 +81,7 @@ class UpdateClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.Upda
 
     def handle_no_permission(self):
         messages.warning(self.request, self.permission_denied_message)
-        return redirect('service_order:list')
+        return redirect('client:list')
 
 
 class DeleteClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.DeleteView):
@@ -93,4 +93,4 @@ class DeleteClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.Dele
 
     def handle_no_permission(self):
         messages.warning(self.request, self.permission_denied_message)
-        return redirect('service_order:list')
+        return redirect('client:list')

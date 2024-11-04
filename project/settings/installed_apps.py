@@ -10,5 +10,6 @@ INSTALLED_APPS = [
     'storage',
     'client',
     'service_order',
-    'account'
+    'account',
+    'debug_toolbar',
 ]

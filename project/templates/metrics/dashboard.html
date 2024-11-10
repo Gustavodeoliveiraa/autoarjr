@@ -6,7 +6,7 @@
 
 {% block main %}
 
-    <div class="container-fluid ps-5 pe-5">
+    <div class="container-fluid">
       <h4 class="mt-4">Metricas Gerais</h4>
       {% include " ../../metrics/metrics_components/general_metrics.card.html" %}
 
@@ -16,14 +16,14 @@
 
         <div class="container-fluid me-4">
             <div class="row mt-5">
-                <div class="col-6">
+                <div class="col-12 col-md-6 p-0">
                     <h5 class="display-6 text-center mb-4 mt-4">Total vendido nos ultimos 7 dias</h5>
                     <div class=""> 
                         <canvas id="myChart"></canvas>
                     </div>
                 </div>
     
-                <div class="col-6">
+                <div class="col-12 col-md-6 p-o">
                     <h5 class="display-6 text-center mb-4 mt-4">Vendas por dias ( Ultimos 7 Dias ) </h5>
                     <div class="" height="200">
                         <canvas id="selles_per_day_of_week" class="embed-responsive-item"></canvas>
@@ -32,7 +32,7 @@
             </div>
     
             <div class="row mt-5">
-                <div class="col-6">
+              <div class="col-12 col-md-6 p-0">
                     <h5 class="display-6 text-center mb-4 mt-4">Quantidade de Carros Consertados por Loja</h5>
                     <div class=""> 
                         <canvas id="car_fix_per_store" style="height: 100%;"></canvas>
@@ -42,9 +42,6 @@
         </div>
     </div>
     
-
-
-
     <script>
         const ctx = document.getElementById('myChart');
         const sales_on_weekend = {{total_value_of_sales_per_day_on_week|safe}}

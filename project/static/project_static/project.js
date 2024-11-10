@@ -1,6 +1,7 @@
 const sidebar = document.querySelector(".sidebar-container");
 const pin = document.querySelector(".bi-pin");
 const navSide = document.querySelector(".nav-side");
+const menu = document.querySelector('.menu')
 
 // Função para atualizar o estado da sidebar baseado no localStorage
 function updateSidebarState() {

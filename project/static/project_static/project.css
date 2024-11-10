@@ -48,3 +48,27 @@
 .bi-pin:hover {
     transform: scale(1.1);
 }
+
+@media (max-width: 767px) {
+    .sidebar-container {
+        position: fixed !important;
+        overflow: hidden !important;
+    }
+
+    .position-absolute {
+        display: none !important;
+    }
+
+    .menu {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+        pointer-events: none;
+    }
+
+    .sidebar-container:hover .menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+    }
+}

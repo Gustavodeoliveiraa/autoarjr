@@ -11,7 +11,7 @@
                 <h3 class="card-title mb-4">{{ product.name}}</h3>
                 <p class="card-text ms-3">Categoria: <strong>{{product.category}}</strong></p>
                 <p class="card-text ms-3">Quantidade em estoque: <strong>{{product.quantity}}</strong></p>
-                <p class="card-text ms-3">Detalhes: <strong>{{product.detail}}</strong></p>
+                <p class="card-text ms-3">Detalhes: {% if product.detail %}<strong>{{product.detail}}</strong>{% endif %}</p>
             </div>
         </div>
         <a href="{% url "storage:storage_list" %}" class="btn btn-secondary">Voltar para lista de peças</a>

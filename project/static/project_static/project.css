@@ -49,7 +49,7 @@
     transform: scale(1.1);
 }
 
-@media (max-width: 577px) {
+@media (max-width: 767px) {
     .sidebar-container {
         position: fixed !important;
         overflow: hidden !important;

@@ -13,7 +13,7 @@
                     <p>Data: <strong>{{service_order.created_at|date:'d/m/Y'}}</strong></p>
                 </div>
                 <p>Telefone: <strong>{{service_order.client_cellphone}}</strong></p>
-                <p>CPF: <strong>{{service_order.cpf}}</strong></p>
+                <p>CPF: {% if service_order.cpf %}<strong>{{service_order.cpf}}</strong>{% endif %}</p>
                 <p>Carro: <strong>{{service_order.car_model}}</strong></p>
                 <p>Placa: <strong>{{service_order.car_plate}}</strong></p>
                 <p>Valor do Serviço: <strong>{{service_order.service_price}}</strong></p>
@@ -21,7 +21,7 @@
                 <p>Pago:
                     <input class="ms-1" type="checkbox" disabled {% if service_order.paid %} checked {% endif %}>
                 </p>
-                <p>Observações: <strong>{{service_order.observation}}</strong></p>
+                <p>Observações: {% if service_order.observation %}<strong>{{service_order.observation}}</strong>{% endif %}</p>
 
             </div>
         </div>

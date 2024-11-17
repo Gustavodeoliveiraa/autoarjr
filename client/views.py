@@ -1,3 +1,5 @@
+from django.forms import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.views import generic
@@ -7,6 +9,7 @@ from django.urls import reverse_lazy
 from utils.get_stripped_value import (
     get_and_strip_request_param as strip_param
 )
+from utils.ws_notify import notify_clients
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 
@@ -23,6 +26,10 @@ class RegisterClientView(PermissionRequiredMixin, LoginRequiredMixin, generic.Cr
     def handle_no_permission(self):
         messages.warning(self.request, self.permission_denied_message)
         return redirect('client:list')
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        notify_clients('update')
+        return super().form_valid(form)
 
 
 class RegisterStoreView(PermissionRequiredMixin, LoginRequiredMixin, generic.CreateView):

@@ -29,3 +29,12 @@ LOGOUT_REDIRECT_URL = '/account/login'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+# django channels
+ASGI_APPLICATION = 'project.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Usando a camada de memória padrão
+    },
+}

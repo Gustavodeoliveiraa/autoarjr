@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var oldPlateMask = 'AAA-9999';
-    var nemPlateMask = 'AAA9A99';
+    var nemPlateMask = 'AAA9A99'
 
     $('#id_car_plate').inputmask({
         mask: [oldPlateMask, nemPlateMask],

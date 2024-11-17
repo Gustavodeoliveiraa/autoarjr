@@ -1,9 +1,12 @@
+from django.forms import BaseModelForm
+from django.http import HttpResponse
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.shortcuts import redirect
 from .models import ServiceOrder
 from .forms import FormRegisterServiceOrder
+from utils.ws_notify import notify_clients
 from utils.get_stripped_value import (
     get_and_strip_request_param as strip_param
 )
@@ -21,6 +24,10 @@ class RegisterServiceOrder(PermissionRequiredMixin, LoginRequiredMixin, generic.
     def handle_no_permission(self):
         messages.warning(self.request, self.permission_denied_message)
         return redirect('service_order:list')
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        notify_clients('update')
+        return super().form_valid(form)
 
 
 class ListServiceOrderView(LoginRequiredMixin, generic.ListView):

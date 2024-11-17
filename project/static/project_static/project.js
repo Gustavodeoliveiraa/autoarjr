@@ -51,7 +51,7 @@ if (pin) { // Verifica se o ícone existe
 
 // Websocket
 if (window.location.pathname === '/client/list/' | window.location.pathname === '/service_order/list' ) {
-    const ws = new WebSocket('ws://' + window.location.host + '/ws/clients/web-socket');
+    const ws = new WebSocket('wss://' + window.location.host + '/ws/clients/web-socket');
 
     ws.onmessage = function(event) {
         const data = JSON.parse(event.data);

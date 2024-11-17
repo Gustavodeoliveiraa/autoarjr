@@ -35,6 +35,9 @@ ASGI_APPLICATION = 'project.asgi.application'
 
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Usando a camada de memória padrão
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',  # Use o Redis como backend
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],  # Conecta-se ao Redis local (padrão)
+        },
     },
 }

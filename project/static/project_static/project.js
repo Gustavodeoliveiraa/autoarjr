@@ -48,23 +48,3 @@ if (pin) { // Verifica se o ícone existe
         localStorage.setItem("sidebarFixed", isFixed);
     });
 }
-
-// Websocket
-if (window.location.pathname === '/client/list/' | window.location.pathname === '/service_order/list' ) {
-    const ws = new WebSocket('wss://' + window.location.host + '/ws/clients/web-socket');
-
-    ws.onmessage = function(event) {
-        const data = JSON.parse(event.data);
-        if (data.action === 'update') {
-            window.location.reload();
-        } 
-    };
-
-    ws.onclose = function() {
-        console.error('WebSocket desconectado. Tentando reconectar...');
-    };
-
-    ws.onerror = function(error) {
-        console.error('Erro no WebSocket:', error);
-    };
-}

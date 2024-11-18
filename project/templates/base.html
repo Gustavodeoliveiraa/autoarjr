@@ -1,4 +1,5 @@
 {% load static %}
+{% load cache %}
 
 <!DOCTYPE html>
 <html lang="pt-br" data-bs-theme="dark">
@@ -42,10 +43,12 @@
             {% include "components/sidebar.html" %}
         {% endif %}
         
-        <div class="col py-3 ps-3">
-        <h3 class="display mt-4 mb-4 d-none d-md-block">
-            <a href="{% url "service_order:list" %}" class="text-decoration-none text-white">Sistema Genrenciador de Estoque (SGE)</a>
-        </h3>
+        {% cache 1000 title_sidebar %}
+            <div class="col py-3 ps-3">
+            <h3 class="display mt-4 mb-4 d-none d-md-block">
+                <a href="{% url "service_order:list" %}" class="text-decoration-none text-white">Sistema Genrenciador de Estoque (SGE)</a>
+            </h3>
+        {% endcache %}
 
             <div class="container-fluid ps-4">
                 <main>

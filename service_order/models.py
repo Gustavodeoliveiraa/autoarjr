@@ -1,6 +1,24 @@
 from django.db import models
 
 
+class ServiceCategory(models.Model):
+    category_name = models.CharField(max_length=255, blank=True, null=True, default='')
+
+    def __str__(self):
+        return self.category_name
+
+
+class Services(models.Model):
+    service = models.CharField(max_length=255, blank=True, null=True, default='')
+    service_category = models.ForeignKey(
+        ServiceCategory, on_delete=models.CASCADE, default=1,
+        related_name='services_category'
+    )
+
+    def __str__(self):
+        return f'Service: {self.service} --> Category: {self.service_category}'
+
+
 class ServiceOrder(models.Model):
     client_name = models.CharField(max_length=255, blank=False, null=False)
     client_cellphone = models.CharField(max_length=255, blank=False, null=False)
@@ -11,7 +29,8 @@ class ServiceOrder(models.Model):
         max_digits=10, decimal_places=2, blank=False, null=False
     )
 
-    service = models.CharField(max_length=255, blank=False, null=False)
+    service = models.CharField(max_length=255, blank=False, null=False, default='')
+    service1 = models.ManyToManyField(Services, blank=True, default=1)
 
     paid = models.BooleanField(
         blank=False, null=False, verbose_name="Payment Made",
@@ -25,6 +44,3 @@ class ServiceOrder(models.Model):
 
     class Meta:
         ordering = ['-id']
-
-    def __str__(self) -> str:
-        return str(self.client_name)

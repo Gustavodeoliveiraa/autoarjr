@@ -4,6 +4,7 @@
         "fusivel",
         "pytz",
         "sandero",
+        "serviceorder",
         "valvula"
     ]
 }

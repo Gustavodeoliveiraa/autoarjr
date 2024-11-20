@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from .models import ServiceOrder
 from .forms import FormRegisterServiceOrder
+from utils.remove_item_of_storage import rm_item_of_storage
 from utils.get_stripped_value import (
     get_and_strip_request_param as strip_param
 )
@@ -46,7 +47,7 @@ class ListServiceOrderView(LoginRequiredMixin, generic.ListView):
         }
 
         # remove empty values
-        filters = {key: value for key, value in filters.items() if key}
+        filters = {key: value for key, value in filters.items() if value}
 
         paid = strip_param(self, 'paid')
         if paid:

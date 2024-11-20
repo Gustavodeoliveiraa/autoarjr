@@ -48,6 +48,7 @@
                     <td>id</td>
                     <td>Nome</td>
                     <td>Quantidade</td>
+                    <td>Preço de Custo</td>
                     <td>Categoria</td>
                     <td class="text-center">Ações</td>
                 </tr>
@@ -58,6 +59,7 @@
                         <td>{{product.id}}</td>
                         <td>{{product.name}}</td>
                         <td>{{product.quantity}}</td>
+                        <td>{{product.cost}}</td>
                         <td>{{product.category}}</td>
                         <td class="text-center">
                             <a href="{% url "storage:storage_detail" product.id %}" class="btn btn-info btn-sm">

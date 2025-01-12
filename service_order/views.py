@@ -4,7 +4,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.shortcuts import redirect
-from .models import ServiceOrder
+from .models import ServiceCategory, ServiceOrder, Services
 from .forms import FormRegisterServiceOrder
 from utils.remove_item_of_storage import rm_item_of_storage
 from utils.get_stripped_value import (
@@ -25,8 +25,11 @@ class RegisterServiceOrder(PermissionRequiredMixin, LoginRequiredMixin, generic.
         messages.warning(self.request, self.permission_denied_message)
         return redirect('service_order:list')
 
-    def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        return super().form_valid(form)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['service1'] = Services.objects.all()
+        context['categories'] = ServiceCategory.objects.all()
+        return context
 
 
 class ListServiceOrderView(LoginRequiredMixin, generic.ListView):
@@ -68,6 +71,20 @@ class UpdateServiceOrderView(PermissionRequiredMixin, LoginRequiredMixin, generi
     def handle_no_permission(self):
         messages.warning(self.request, self.permission_denied_message)
         return redirect('service_order:list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        order = self.get_object()
+
+        # Corrigido: usando prefetch_related no campo 'service_category' do modelo 'Services'
+        context['selected_services'] = order.service1.all()
+        context['o'] = order
+        context['categories'] = ServiceCategory.objects.all()
+        context['service1'] = Services.objects.prefetch_related('service_category').all()
+        return context
+
+    def form_valid(self, form: BaseModelForm):
+        return super().form_valid(form)
 
 
 class DetailServiceOrderView(PermissionRequiredMixin, LoginRequiredMixin, generic.DetailView):

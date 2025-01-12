@@ -7,10 +7,10 @@ class ServiceOrderAdmin(admin.ModelAdmin):
     model = ServiceOrder
     fields = [
         'client_name', 'client_cellphone', 'car_model',
-        'car_plate', 'service_price', 'service', 'paid', 'created_at',
+        'car_plate', 'service_price', 'service', 'service1', 'paid', 'created_at',
         'observation', 'cpf'
     ]
 
     search_fields = ['client_name', 'car_plate']
-    readonly_fields = []
+    readonly_fields = ['created_at']
     ordering = ['client_name']

@@ -24,7 +24,6 @@ class ServiceOrder(models.Model):
     client_cellphone = models.CharField(max_length=255, blank=False, null=False)
     car_model = models.CharField(max_length=255, blank=False, null=False)
     car_plate = models.CharField(max_length=10, blank=False, null=False)
-
     service_price = models.DecimalField(
         max_digits=10, decimal_places=2, blank=False, null=False
     )
@@ -44,3 +43,6 @@ class ServiceOrder(models.Model):
 
     class Meta:
         ordering = ['-id']
+
+    def __str__(self) -> str:
+        return str(self.client_name)

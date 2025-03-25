@@ -17,7 +17,7 @@ class ServiceOrder(models.Model):
         blank=False, null=False, verbose_name="Payment Made",
         editable=True
     )
-    created_at = models.DateField(auto_now_add=True, editable=True)
+    created_at = models.DateField(editable=True)
 
     observation = models.CharField(max_length=255, null=True, blank=True)
 
